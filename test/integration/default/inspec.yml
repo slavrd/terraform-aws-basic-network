@@ -1,0 +1,15 @@
+---
+name: default
+title: Webcounter networking Terraform module tests
+summary: Test suite for basic check of the network resources created for deploying the webcounter app.
+version: 0.1.0
+
+inputs:
+  - name: private_subnet_ids
+    type: Array
+  - name: public_subnet_ids
+    type: Array
+  - name: public_instances
+    type: Array
+  - name: private_instances
+    type: Array
