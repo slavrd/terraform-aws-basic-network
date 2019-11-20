@@ -13,7 +13,7 @@ The subnet types are designated **public** and **private**.
 
 **Notes:**
 
-* To allow connectivity for the **private** subnet an `aws_nat_gateway` is created in the first public subnet in the list. Therefore the **public** subnet list can never be with `0` elements.
+* To allow connectivity for the **private** subnet an `aws_nat_gateway` is created in the first public subnet in the list. Therefore the **public** subnet list can never be with `0` elements. If the **private** subnets list is empty the `aws_nat_gateway` and its associated resources will not be crated as well.
 
 ## Testing with Kitchen-Terraform
 
