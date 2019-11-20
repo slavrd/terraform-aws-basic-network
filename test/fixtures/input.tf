@@ -1,34 +1,25 @@
 variable "vpc_cidr_block" {
   type        = string
-  default     = "172.31.0.0/20"
   description = "CIDR block to assign to the VPC"
 }
 
+variable "name_prefix" {
+  type = string
+
+}
+
 variable "common_tags" {
-  type = map
-  default = {
-    project = "kitchen-test-terraform-aws-basic-network"
-    owner   = "slav"
-    Name    = "slav-kitchen-test-terraform-aws-basic-network"
-  }
+  type        = map
   description = "Default tags which will be applied to all the created resources. The current default keys must be allways present!"
 }
 
 variable "public_subnet_cidrs" {
-  type = list
-  default = [
-    "172.31.0.0/24",
-    "172.31.1.0/24",
-  ]
+  type        = list
   description = "CIDR blocks list to create public subnets"
 }
 
 variable "private_subnet_cidrs" {
-  type = list
-  default = [
-    "172.31.4.0/24",
-    "172.31.5.0/24",
-  ]
+  type        = list
   description = "CIDR blocks list to create private subnets"
 }
 
