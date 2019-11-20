@@ -1,22 +1,26 @@
 driver:
   name: terraform
   root_module_directory: test/fixtures
-  variable_files:
-    - test/fixtures/test.tfvars
 
 provisioner:
   name: terraform
 
 verifier:
   name: terraform
-
-  systems:
-    
+  systems:    
     - name: local
       backend: local
 
 platforms:
-  - name: aws-basic-network
+  - name: aws-basic-network-private-subents
+    driver:
+      variable_files:
+        - test/fixtures/test.with-private.tfvars
+
+  - name: aws-basic-network-no-private-subents
+    driver:
+      variable_files:
+        - test/fixtures/test.no-private.tfvars
 
 suites:
   - name: default
