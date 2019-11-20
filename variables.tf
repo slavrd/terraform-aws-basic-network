@@ -3,10 +3,14 @@ variable "vpc_cidr_block" {
   description = "CIDR block to assign to the VPC"
 }
 
+variable "name_prefix" {
+  type    = string
+  default = ""
+}
+
 variable "common_tags" {
   type = map
   default = {
-    Name    = ""
     project = ""
     owner   = ""
   }
