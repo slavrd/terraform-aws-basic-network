@@ -21,5 +21,5 @@ variable "public_subnet_cidrs" {
 variable "private_subnet_cidrs" {
   type        = list
   default     = []
-  description = "List containing the private subents CIDRs."
+  description = "List containing the private subents CIDRs. If the list is empty no nat gateway will be created."
 }
