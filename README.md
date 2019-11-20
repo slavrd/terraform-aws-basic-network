@@ -2,7 +2,7 @@
 
 A terraform module that deploys a VPC and two types of subnets. 
 
-Input variables are defined in `input.tf`.
+Input variables are defined in `variables.tf`.
 
 The CIDRs for the VPC and subents are passed as input list variables and it is the user's responsibility to calculate them so they make sense.
 

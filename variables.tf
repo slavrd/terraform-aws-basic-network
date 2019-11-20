@@ -1,6 +1,5 @@
 variable "vpc_cidr_block" {
   type        = string
-  default     = "172.25.0.0/20"
   description = "CIDR block to assign to the VPC"
 }
 
@@ -16,12 +15,11 @@ variable "common_tags" {
 
 variable "public_subnet_cidrs" {
   type        = list
-  default     = ["172.25.0.0/24"]
   description = "List containing the public subents CIDRs. Must contain atleast one."
 }
 
 variable "private_subnet_cidrs" {
   type        = list
-  default     = ["172.25.4.0/24"]
+  default     = []
   description = "List containing the private subents CIDRs."
 }
