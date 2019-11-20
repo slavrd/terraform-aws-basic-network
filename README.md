@@ -9,7 +9,7 @@ The CIDRs for the VPC and subents are passed as input list variables and it is t
 The subnet types are designated **public** and **private**.
 
 * The **"public"** subnets allow for resources in it to be reachable from the internet
-* The **private** subnets do not allow incoming connections from the internet, but still allow outbound connections from the resources in it.
+* The **"private"** subnets do not allow incoming connections from the internet, but still allow outbound connections from the resources in it.
 
 **Notes:**
 
