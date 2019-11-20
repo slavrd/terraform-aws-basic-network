@@ -1,4 +1,4 @@
-# Terraform module - network
+# Terraform module - AWS basic network
 
 A terraform module that deploys a VPC and two types of subnets. 
 
