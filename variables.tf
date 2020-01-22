@@ -9,21 +9,17 @@ variable "name_prefix" {
 }
 
 variable "common_tags" {
-  type = map
-  default = {
-    project = ""
-    owner   = ""
-  }
-  description = "Default tags which will be applied to all the created resources. The current default keys must be allways present!"
+  type = map(string)
+  description = "A mapping of tags to be applied to the created resources."
 }
 
 variable "public_subnet_cidrs" {
-  type        = list
-  description = "List containing the public subents CIDRs. Must contain atleast one."
+  type        = map(number)
+  description = "Map containing the public subnets CIDRs as keys and number as value. The number is used to determine the AWS vailability zone in which the subnet will be created. It is used as an list index to select an AZ in the current AWS region. The map must contain atleast one kew value pair."
 }
 
 variable "private_subnet_cidrs" {
-  type        = list
-  default     = []
-  description = "List containing the private subents CIDRs. If the list is empty no nat gateway will be created."
+  type        = map(number)
+  default     = {}
+  description = "Map containing the private subnets CIDRs as keys and number as value. It is used as an list index to select an AZ in the current AWS region. The number is used to determine the AWS vailability zone in which the subnet will be created."
 }

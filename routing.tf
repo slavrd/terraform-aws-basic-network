@@ -44,7 +44,7 @@ resource "aws_eip" "nat_gw" {
 resource "aws_nat_gateway" "gw" {
   count         = local.isNATGW ? 1 : 0
   allocation_id = aws_eip.nat_gw[0].id
-  subnet_id     = aws_subnet.public[var.public_subnet_cidrs[0]].id
+  subnet_id     = aws_subnet.public[keys(aws_subnet.public)[0]].id
   depends_on    = [aws_internet_gateway.gw]
   tags = merge({
     Name = "${var.name_prefix}-natgw"
