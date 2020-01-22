@@ -4,11 +4,11 @@ common_tags = {
   owner   = "slav"
 }
 vpc_cidr_block = "172.25.1.0/24"
-public_subnet_cidrs = [
-  "172.25.1.0/28",
-  "172.25.1.16/28",
-]
-private_subnet_cidrs = [
-  "172.25.1.32/28",
-  "172.25.1.48/28",
-]
+public_subnet_cidrs = {
+  "172.25.1.0/28"  = 0
+  "172.25.1.16/28" = 1
+}
+private_subnet_cidrs = {
+  "172.25.1.32/28" = 0
+  "172.25.1.48/28" = 1
+}

@@ -9,9 +9,10 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "public" {
-  for_each   = toset(var.public_subnet_cidrs)
-  cidr_block = each.value
-  vpc_id     = aws_vpc.main.id
+  for_each          = var.public_subnet_cidrs
+  cidr_block        = each.key
+  vpc_id            = aws_vpc.main.id
+  availability_zone = element(data.aws_availability_zones.azs.names, each.value)
   tags = merge({
     Name = "${var.name_prefix}-public"
     },
@@ -20,9 +21,10 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  for_each   = toset(var.private_subnet_cidrs)
-  cidr_block = each.value
-  vpc_id     = aws_vpc.main.id
+  for_each          = var.private_subnet_cidrs
+  cidr_block        = each.key
+  vpc_id            = aws_vpc.main.id
+  availability_zone = element(data.aws_availability_zones.azs.names, each.value)
   tags = merge({
     Name = "${var.name_prefix}-private"
     },

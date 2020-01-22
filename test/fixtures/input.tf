@@ -14,13 +14,14 @@ variable "common_tags" {
 }
 
 variable "public_subnet_cidrs" {
-  type        = list
-  description = "CIDR blocks list to create public subnets"
+  type        = map(number)
+  description = "Map containing the public subnets CIDRs as keys and number as value. The number is used to determine the AWS vailability zone in which the subnet will be created. It is used as an list index to select an AZ in the current AWS region. The map must contain atleast one kew value pair."
 }
 
 variable "private_subnet_cidrs" {
-  type        = list
-  description = "CIDR blocks list to create private subnets"
+  type        = map(number)
+  description = "Map containing the private subnets CIDRs as keys and number as value. The number is used to determine the AWS vailability zone in which the subnet will be created. It is used as an list index to select an AZ in the current AWS region."
+  default     = {}
 }
 
 variable "ssh_pub_key_path" {
