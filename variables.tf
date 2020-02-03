@@ -9,7 +9,7 @@ variable "name_prefix" {
 }
 
 variable "common_tags" {
-  type = map(string)
+  type        = map(string)
   description = "A mapping of tags to be applied to the created resources."
 }
 

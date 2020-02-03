@@ -22,3 +22,13 @@ output "vpc_id" {
   value       = aws_vpc.main.id
   description = "The id of the VPC which was created."
 }
+
+output "main_route_table_id" {
+  value       = aws_vpc.main.main_route_table_id
+  description = "The id of the VPC default routing table. Used by the private subnets"
+}
+
+output "public_route_table_id" {
+  value       = aws_route_table.public.id
+  description = "The id of the public subnets route table."
+}
