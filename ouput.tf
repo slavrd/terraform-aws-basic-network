@@ -1,5 +1,5 @@
 output "public_subnet_ids" {
-  value       = [for cidr, az in var.public_subnet_cidrs : aws_subnet.public[cidr].id]
+  value       = values(aws_subnet.public)[*].id
   description = "Ids of the 'public' subents."
 }
 
@@ -9,7 +9,7 @@ output "public_subnets" {
 }
 
 output "private_subnet_ids" {
-  value       = [for cidr, az in var.private_subnet_cidrs : aws_subnet.private[cidr].id]
+  value       = values(aws_subnet.private)[*].id
   description = "Ids of the private subents."
 }
 
