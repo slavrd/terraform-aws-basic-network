@@ -2,9 +2,13 @@
 
 A terraform module that deploys a VPC and two types of subnets. 
 
+## Input
+
 Input variables are defined in `variables.tf`.
 
-The CIDRs for the VPC and subents are passed as input list variables and it is the user's responsibility to calculate them so they make sense.
+It is the user's responsibility to calculate the CIDRs for the VPC and subnets so that they are sensible.
+
+The input variables that define the subnets to be created `public_subnet_cidrs` and `private_subnet_cidrs` are actually maps and not lists of CIDRs as one might expect. The keys of the map define the CIDRs of the subnets while the values define the availability zone in which the subnet will be created. These values are of type `number` and they are used as an index to select an availability zone form the list of zones for the current AWS region. 
 
 The subnet types are designated **public** and **private**.
 
