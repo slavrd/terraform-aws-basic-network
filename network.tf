@@ -9,7 +9,7 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "public" {
-  for_each          = var.public_subnet_cidrs
+  for_each          = { for s in var.public_subnet_cidrs : s.cidr => s.az_index }
   cidr_block        = each.key
   vpc_id            = aws_vpc.main.id
   availability_zone = element(data.aws_availability_zones.azs.names, each.value)
@@ -21,7 +21,7 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  for_each          = var.private_subnet_cidrs
+  for_each          = { for s in var.private_subnet_cidrs : s.cidr => s.az_index }
   cidr_block        = each.key
   vpc_id            = aws_vpc.main.id
   availability_zone = element(data.aws_availability_zones.azs.names, each.value)
