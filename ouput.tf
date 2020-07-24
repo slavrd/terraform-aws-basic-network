@@ -35,5 +35,5 @@ output "public_route_table_id" {
 
 output "nat_gateway_public_ip" {
   value       = try(aws_nat_gateway.gw[0].public_ip, "")
-  description = "List of the ids of the public subnets."
+  description = "The public IP of the NAT gateway."
 }
