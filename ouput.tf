@@ -32,3 +32,8 @@ output "public_route_table_id" {
   value       = aws_route_table.public.id
   description = "The id of the public subnets route table."
 }
+
+output "nat_gateway_public_ip" {
+  value       = try(aws_nat_gateway.gw[0].public_ip, "")
+  description = "List of the ids of the public subnets."
+}
