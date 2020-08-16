@@ -1,11 +1,3 @@
-terraform {
-  required_version = "~> 0.12.7"
-}
-
-provider "aws" {
-  version = "~> 2.26"
-}
-
 module "wc_network" {
   source               = "../../"
   vpc_cidr_block       = var.vpc_cidr_block

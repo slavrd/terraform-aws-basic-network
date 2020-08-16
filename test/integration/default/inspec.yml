@@ -1,7 +1,7 @@
 ---
 name: default
-title: Webcounter networking Terraform module tests
-summary: Test suite for basic check of the network resources created for deploying the webcounter app.
+title: Tests for Terraform Basic AWS network module.
+summary: Test suite for basic check of the network resources created in AWS.
 version: 0.1.0
 
 inputs:

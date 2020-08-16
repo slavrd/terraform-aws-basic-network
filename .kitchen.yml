@@ -1,6 +1,7 @@
 driver:
   name: terraform
   root_module_directory: test/fixtures
+  verify_version: false # ignore kitchen-terraform supported terraform version check
 
 provisioner:
   name: terraform
