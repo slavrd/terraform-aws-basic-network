@@ -5,7 +5,7 @@ locals {
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
   tags = merge({
-    Name = "${var.name_prefix}-inet-gw"
+    Name = "${var.name_prefix}inet-gw"
     },
     var.common_tags
   )
@@ -14,7 +14,7 @@ resource "aws_internet_gateway" "gw" {
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
   tags = merge({
-    Name = "${var.name_prefix}-default-inet-rtb"
+    Name = "${var.name_prefix}default-inet-rtb"
     },
     var.common_tags
   )
@@ -35,7 +35,7 @@ resource "aws_route_table_association" "public" {
 resource "aws_eip" "nat_gw" {
   count = local.isNATGW ? 1 : 0
   tags = merge({
-    Name = "${var.name_prefix}-natgw-ip"
+    Name = "${var.name_prefix}natgw-ip"
     },
     var.common_tags
   )
@@ -47,7 +47,7 @@ resource "aws_nat_gateway" "gw" {
   subnet_id     = aws_subnet.public[keys(aws_subnet.public)[0]].id
   depends_on    = [aws_internet_gateway.gw]
   tags = merge({
-    Name = "${var.name_prefix}-natgw"
+    Name = "${var.name_prefix}natgw"
     },
     var.common_tags
   )

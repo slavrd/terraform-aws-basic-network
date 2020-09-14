@@ -1,4 +1,4 @@
-name_prefix = "kitchen-test-terraform-aws-basic-network-with-private"
+name_prefix = "kitchen-test-terraform-aws-basic-network-with-private-"
 common_tags = {
   project = "kitchen-test-terraform-aws-basic-network"
   owner   = "slav"

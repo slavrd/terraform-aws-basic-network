@@ -2,7 +2,7 @@ resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr_block
   enable_dns_hostnames = true
   tags = merge({
-    Name = "${var.name_prefix}-vpc"
+    Name = "${var.name_prefix}vpc"
     },
     var.common_tags
   )
@@ -14,7 +14,7 @@ resource "aws_subnet" "public" {
   vpc_id            = aws_vpc.main.id
   availability_zone = element(data.aws_availability_zones.azs.names, each.value)
   tags = merge({
-    Name = "${var.name_prefix}-public"
+    Name = "${var.name_prefix}public"
     },
     var.common_tags
   )
@@ -26,7 +26,7 @@ resource "aws_subnet" "private" {
   vpc_id            = aws_vpc.main.id
   availability_zone = element(data.aws_availability_zones.azs.names, each.value)
   tags = merge({
-    Name = "${var.name_prefix}-private"
+    Name = "${var.name_prefix}private"
     },
     var.common_tags
   )
