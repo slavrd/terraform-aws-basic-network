@@ -9,7 +9,7 @@ variable "name_prefix" {
 }
 
 variable "common_tags" {
-  type        = map
+  type        = map(any)
   description = "Default tags which will be applied to all the created resources. The current default keys must be allways present!"
 }
 
