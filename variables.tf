@@ -13,6 +13,18 @@ variable "common_tags" {
   description = "A mapping of tags to be applied to the created resources."
 }
 
+variable "public_subnet_tags" {
+  type        = map(string)
+  description = "A mapping of tags to be applied to the public subnets."
+  default     = {}
+}
+
+variable "private_subnet_tags" {
+  type        = map(string)
+  description = "A mapping of tags to be applied to the private subnets."
+  default     = {}
+}
+
 variable "public_subnet_cidrs" {
   type = list(object({
     cidr     = string
