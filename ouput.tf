@@ -25,7 +25,12 @@ output "vpc_id" {
 
 output "main_route_table_id" {
   value       = aws_vpc.main.main_route_table_id
-  description = "The id of the VPC default routing table. Used by the private subnets"
+  description = "The id of the VPC default routing table. It is not used by any subnets."
+}
+
+output "private_route_table_id" {
+  value       = try(aws_route_table.private[0].id, "")
+  description = "The id of the privagte routing table. Used by the private subnets."
 }
 
 output "public_route_table_id" {

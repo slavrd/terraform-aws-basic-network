@@ -4,3 +4,4 @@ terraform.tfstate*
 Gemfile.lock
 .ruby-version
 *.auto.tfvars
+.terraform.lock.hcl

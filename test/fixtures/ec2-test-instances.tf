@@ -28,7 +28,7 @@ resource "aws_security_group" "allow-all" {
 resource "aws_instance" "public" {
   count                       = length(module.wc_network.public_subnet_ids)
   subnet_id                   = module.wc_network.public_subnet_ids[count.index]
-  ami                         = data.aws_ami.ubuntu-xenial.image_id
+  ami                         = data.aws_ami.ubuntu-focal.image_id
   vpc_security_group_ids      = [aws_security_group.allow-all.id]
   key_name                    = aws_key_pair.kitchen-test.id
   associate_public_ip_address = true
@@ -39,7 +39,7 @@ resource "aws_instance" "public" {
 resource "aws_instance" "private" {
   count                       = length(module.wc_network.private_subnet_ids)
   subnet_id                   = module.wc_network.private_subnet_ids[count.index]
-  ami                         = data.aws_ami.ubuntu-xenial.image_id
+  ami                         = data.aws_ami.ubuntu-focal.image_id
   vpc_security_group_ids      = [aws_security_group.allow-all.id]
   key_name                    = aws_key_pair.kitchen-test.id
   associate_public_ip_address = true
@@ -47,13 +47,13 @@ resource "aws_instance" "private" {
   tags                        = var.common_tags
 }
 
-data "aws_ami" "ubuntu-xenial" {
+data "aws_ami" "ubuntu-focal" {
   most_recent = "true"
   owners      = ["099720109477"]
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-*-amd64-server-*"]
   }
 
   filter {
