@@ -53,9 +53,32 @@ resource "aws_nat_gateway" "gw" {
   )
 }
 
-resource "aws_route" "default_nat_gw" {
-  count                  = local.isNATGW ? 1 : 0
-  route_table_id         = aws_vpc.main.main_route_table_id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.gw[0].id
+resource "aws_route_table" "private" {
+  count  = local.isNATGW ? 1 : 0
+  vpc_id = aws_vpc.main.id
+  tags = merge({
+    Name = "${var.name_prefix}default-nat-rtb"
+    },
+    var.common_tags
+  )
 }
+
+resource "aws_route" "default_private" {
+  count                  = local.isNATGW ? 1 : 0
+  route_table_id         = aws_route_table.private[0].id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_nat_gateway.gw[0].id
+}
+
+resource "aws_route_table_association" "private" {
+  for_each       = local.isNATGW ? aws_subnet.private : {}
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.private[0].id
+}
+
+# resource "aws_route" "default_nat_gw" {
+#   count                  = local.isNATGW ? 1 : 0
+#   route_table_id         = aws_vpc.main.main_route_table_id
+#   destination_cidr_block = "0.0.0.0/0"
+#   nat_gateway_id         = aws_nat_gateway.gw[0].id
+# }
