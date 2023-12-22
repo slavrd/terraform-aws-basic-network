@@ -1,0 +1,48 @@
+content: |
+  # Terraform module - AWS basic network
+
+  A terraform module that deploys a VPC and two types of subnets.
+
+  ## Usage
+
+  It is the user's responsibility to calculate the CIDRs for the VPC and subnets so that they are sensible.
+
+  The subnet types are designated **public** and **private**.
+
+  * The **"public"** subnets allow for resources in it to be reachable from the internet.
+  * The **"private"** subnets do not allow incoming connections from the internet, but still allow outbound connections from the resources in it.
+
+  **Notes:**
+
+  * The input variables that define the subnets to be created - `public_subnet_cidrs` and `private_subnet_cidrs` are actually maps and not lists of CIDRs as one might expect. The keys of the map define the CIDRs of the subnets while the values define the availability zone in which the subnet will be created. These values are of type `number` and they are used as an index to select an availability zone form the list of zones for the current AWS region.
+
+  * To allow connectivity for the **private** subnets an `aws_nat_gateway` is created in the first public subnet in the list. Therefore the **public** subnet list can never  be with `0` elements. If the **private** subnets list is empty the `aws_nat_gateway` and its associated resources will not be crated as well.
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
+
+  {{ .Requirements }}
+
+  {{ .Resources }}
+
+  ## Documentation
+
+  Generated with [terraform-docs](https://terraform-docs.io/user-guide/introduction/). 
+  ```bash
+  terraform-docs markdown table . -c .terraform-docs.yaml > README.md
+  ```
+settings:
+  anchor: false
+  color: true
+  default: true
+  description: false
+  escape: false
+  hide-empty: true
+  html: false
+  indent: 2
+  lockfile: false
+  read-comments: true
+  required: true
+  sensitive: true
+  type: true
